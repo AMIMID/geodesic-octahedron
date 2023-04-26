@@ -119,7 +119,7 @@ MIDIdef.noteOn(\synhtone, { |val, num, chan, src|
 	Synth(\oa, [n: num - 48, out1: [0, 1, 2, 3, 4, 5, 6, 7].rotate(8.rand), out2: [0, 8, 9, 10, 3, 11, 12, 13].rotate(8.rand), out3:[6, 14, 9, 15, 16, 17,12 ].rotate(8.rand)]);
 }, noteNum: (36..96))
 )
-s.record(numChannels:6) ;
+s.record(numChannels:18) ;
 
 
 
