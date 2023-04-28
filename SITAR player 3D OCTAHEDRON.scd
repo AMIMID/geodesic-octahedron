@@ -34,8 +34,14 @@ SynthDef.new(\oa, {
 		Out.ar(pair[0], pair[1])
 	}
 };
-	var out1 = NamedControl.kr(\out1, [0, 1, 2, 3]);  // multiple buses!
-	var out2 = NamedControl.kr(\out2, [1, 4, 3, 5]);  // multiple buses!
+	var out1 = NamedControl.kr(\out1, [0,1,2]);  // multiple buses!
+	var out2 = NamedControl.kr(\out2, [3,2,1]);  // multiple buses!
+	var out3 = NamedControl.kr(\out3, [4,3,1]);  // multiple buses!
+	var out4 = NamedControl.kr(\out4, [0,4,1]);  // multiple buses!
+	var out5 = NamedControl.kr(\out5, [0,2,5]);  // multiple buses!
+	var out6 = NamedControl.kr(\out6, [3,2,5]);  // multiple buses!
+	var out7 = NamedControl.kr(\out7, [4,3,5]);  // multiple buses!
+	var out8 = NamedControl.kr(\out8, [0,4,5]);  // multiple buses!
 
 
 	frequency=1;
@@ -51,14 +57,14 @@ SynthDef.new(\oa, {
 	freq2=freq2/2;
 
 
-	rotation1=TExpRand.ar(0.1,1,Dust.ar(0.1));
-	rotation2=TExpRand.ar(0.1,1,Dust.ar(0.1));
-	rotation3=TExpRand.ar(0.1,1,Dust.ar(0.1));
-	rotation4=TExpRand.ar(0.1,1,Dust.ar(0.1));
-	rotation5=TExpRand.ar(0.1,1,Dust.ar(0.1));
-	rotation6=TExpRand.ar(0.1,1,Dust.ar(0.1));
-	rotation7=TExpRand.ar(0.1,1,Dust.ar(0.1));
-	rotation8=TExpRand.ar(0.1,1,Dust.ar(0.1));
+	rotation1=TExpRand.ar(0.1,10,Dust.ar(0.1));
+	rotation2=TExpRand.ar(0.1,10,Dust.ar(0.1));
+	rotation3=TExpRand.ar(0.1,10,Dust.ar(0.1));
+	rotation4=TExpRand.ar(0.1,10,Dust.ar(0.1));
+	rotation5=TExpRand.ar(0.1,10,Dust.ar(0.1));
+	rotation6=TExpRand.ar(0.1,10,Dust.ar(0.1));
+	rotation7=TExpRand.ar(0.1,10,Dust.ar(0.1));
+	rotation8=TExpRand.ar(0.1,10,Dust.ar(0.1));
 
 
 env=EnvGen.ar(Env.perc(0.01,3,pitch.reciprocal*0.5),doneAction:2);
@@ -88,6 +94,20 @@ osc4=Pan4.ar(SinOsc.ar((freq2*over)*pitch,mul:over.reciprocal*pitch.reciprocal,p
 	wrappedOut.value(out2, LeakDC.ar(LPF.ar(osc2 * env * (2/3), cutt)));
 	wrappedOut.value(out1, LeakDC.ar(LPF.ar(osc3 * env * (1/2), cutt)));
     wrappedOut.value(out2, LeakDC.ar(LPF.ar(osc4 * env * (1/2), cutt)));
+	wrappedOut.value(out3, LeakDC.ar(LPF.ar(osc1 * env * (2/3), cutt)));
+	wrappedOut.value(out4, LeakDC.ar(LPF.ar(osc2 * env * (2/3), cutt)));
+	wrappedOut.value(out3, LeakDC.ar(LPF.ar(osc3 * env * (1/2), cutt)));
+    wrappedOut.value(out4, LeakDC.ar(LPF.ar(osc4 * env * (1/2), cutt)));
+	wrappedOut.value(out5, LeakDC.ar(LPF.ar(osc1 * env * (2/3), cutt)));
+	wrappedOut.value(out6, LeakDC.ar(LPF.ar(osc2 * env * (2/3), cutt)));
+	wrappedOut.value(out5, LeakDC.ar(LPF.ar(osc3 * env * (1/2), cutt)));
+    wrappedOut.value(out6, LeakDC.ar(LPF.ar(osc4 * env * (1/2), cutt)));
+	wrappedOut.value(out7, LeakDC.ar(LPF.ar(osc1 * env * (2/3), cutt)));
+	wrappedOut.value(out8, LeakDC.ar(LPF.ar(osc2 * env * (2/3), cutt)));
+	wrappedOut.value(out7, LeakDC.ar(LPF.ar(osc3 * env * (1/2), cutt)));
+    wrappedOut.value(out8, LeakDC.ar(LPF.ar(osc4 * env * (1/2), cutt)));
+
+
 
 		m = m+1;
 		over = over + (m+1)/1;
@@ -110,7 +130,7 @@ MIDIdef.noteOn(\synhtone, { |val, num, chan, src|
 	if(num < 49) {
 		num = num - 1
 	};
-	Synth(\oa, [n: num - 48, out1: [0, 1, 2, 3].rotate(4.rand), out2: [1, 4, 3, 5].rotate(4.rand)]);
+	Synth(\oa, [n: num - 48, out1: [0,1,2].rotate(3.rand), out2: [3,2,1].rotate(3.rand), out3:[4,3,1].rotate(3.rand), out4: [0,4,1].rotate(3.rand), out5: [0,2,5].rotate(3.rand), out6:[3,2,5].rotate(3.rand), out7: [4,3,5].rotate(3.rand), out8: [0,4,5].rotate(3.rand)]);
 }, noteNum: (36..96))
 )
 s.record(numChannels:6) ;
