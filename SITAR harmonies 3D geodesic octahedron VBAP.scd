@@ -66,7 +66,7 @@ env=EnvGen.ar(Env.perc(0.01,decay,pitch.reciprocal*0.5),doneAction:2);
 
 
 
-osc1=VBAP.ar(16,SinOsc.ar((freq1*over)*pitch,mul:over.reciprocal*pitch.reciprocal,phase:detune1.theta),~b.bufnum,SinOsc.ar(pitch,phase:detune1.real.degrad,mul:pitch.reciprocal),SinOsc.ar(pitch,phase:detune1.imag.degrad,mul:pitch.reciprocal));
+osc1=VBAP.ar(16,SinOsc.ar((freq1*over)*pitch,mul:over.reciprocal*pitch.reciprocal,phase:detune1.theta),~b.bufnum,SinOsc.ar(over*pitch,phase:detune1.real.degrad,mul:over.reciprocal*pitch.reciprocal),SinOsc.ar(over*pitch,phase:detune1.imag.degrad,mul:over.reciprocal*pitch.reciprocal));
 
 
 
