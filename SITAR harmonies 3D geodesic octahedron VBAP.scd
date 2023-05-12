@@ -22,7 +22,8 @@ s.reboot
 // 3D
 a = VBAPSpeakerArray.new(3, [[0, 45], [90, 45], [180, 45], [-90, 45],[0, -45], [90, -45], [180, -45], [-90, -45],[0, 0], [45, 0], [90, 0], [135, 0],[180, 0], [-135, 0], [-90, 0], [-45,0]]); // torus geo dome
 ~b = Buffer.loadCollection(s, a.getSetsAndMatrices);
-
+)
+(
 (
 SynthDef.new(\oa, {
 	arg  n=1, cutt=496,decay=6;
@@ -95,6 +96,7 @@ MIDIdef.noteOn(\synhtone, { |val, num, chan, src|
 	};
 	Synth(\oa, [n: num - 48, out1: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].rotate(16.rand)]);
 }, noteNum: (36..96))
+)
 )
 s.record(numChannels:16) ;
 
